@@ -1,0 +1,83 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install', 'node_static' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.32
+4 verbose node symlink /usr/bin/node
+5 verbose cache add [ 'node_static', null ]
+6 verbose cache add name=undefined spec="node_static" args=["node_static",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'node_static',
+7 verbose parsed url   path: 'node_static',
+7 verbose parsed url   href: 'node_static' }
+8 silly lockFile da880158-node-static node_static
+9 verbose lock node_static /home/kenny2/.npm/da880158-node-static.lock
+10 silly lockFile da880158-node-static node_static
+11 silly lockFile da880158-node-static node_static
+12 verbose addNamed [ 'node_static', '' ]
+13 verbose addNamed [ null, '*' ]
+14 silly lockFile 46b3df0b-node-static node_static@
+15 verbose lock node_static@ /home/kenny2/.npm/46b3df0b-node-static.lock
+16 silly addNameRange { name: 'node_static', range: '*', hasData: false }
+17 verbose request where is /node_static
+18 verbose request registry https://registry.npmjs.org/
+19 verbose request id 88c177f8b910743f
+20 verbose url raw /node_static
+21 verbose url resolving [ 'https://registry.npmjs.org/', './node_static' ]
+22 verbose url resolved https://registry.npmjs.org/node_static
+23 verbose request where is https://registry.npmjs.org/node_static
+24 info trying registry request attempt 1 at 12:14:48
+25 http GET https://registry.npmjs.org/node_static
+26 http 404 https://registry.npmjs.org/node_static
+27 verbose headers { date: 'Fri, 07 Nov 2014 17:14:30 GMT',
+27 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+27 verbose headers   'content-type': 'application/json',
+27 verbose headers   'cache-control': 'max-age=0',
+27 verbose headers   'content-length': '52',
+27 verbose headers   'accept-ranges': 'bytes',
+27 verbose headers   via: '1.1 varnish',
+27 verbose headers   age: '0',
+27 verbose headers   'x-served-by': 'cache-atl6231-ATL',
+27 verbose headers   'x-cache': 'MISS',
+27 verbose headers   'x-cache-hits': '0',
+27 verbose headers   'x-timer': 'S1415380470.147304,VS0,VE85',
+27 verbose headers   'keep-alive': 'timeout=10, max=50',
+27 verbose headers   connection: 'Keep-Alive' }
+28 silly registry.get cb [ 404,
+28 silly registry.get   { date: 'Fri, 07 Nov 2014 17:14:30 GMT',
+28 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+28 silly registry.get     'content-type': 'application/json',
+28 silly registry.get     'cache-control': 'max-age=0',
+28 silly registry.get     'content-length': '52',
+28 silly registry.get     'accept-ranges': 'bytes',
+28 silly registry.get     via: '1.1 varnish',
+28 silly registry.get     age: '0',
+28 silly registry.get     'x-served-by': 'cache-atl6231-ATL',
+28 silly registry.get     'x-cache': 'MISS',
+28 silly registry.get     'x-cache-hits': '0',
+28 silly registry.get     'x-timer': 'S1415380470.147304,VS0,VE85',
+28 silly registry.get     'keep-alive': 'timeout=10, max=50',
+28 silly registry.get     connection: 'Keep-Alive' } ]
+29 silly lockFile 46b3df0b-node-static node_static@
+30 silly lockFile 46b3df0b-node-static node_static@
+31 error 404 404 Not Found: node_static
+31 error 404
+31 error 404 'node_static' is not in the npm registry.
+31 error 404 You should bug the author to publish it
+31 error 404
+31 error 404 Note that you can also install from a
+31 error 404 tarball, folder, or http url, or git url.
+32 error System Linux 3.13.0-24-generic
+33 error command "/usr/bin/node" "/usr/bin/npm" "install" "node_static"
+34 error cwd /home/kenny2/node-apps/dynamicinput
+35 error node -v v0.10.32
+36 error npm -v 1.4.28
+37 error code E404
+38 verbose exit [ 1, true ]

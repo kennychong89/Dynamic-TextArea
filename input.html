@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+
+	<body>
+		<h1>Hello World!</h1>
+
+		<form>
+			<input type="text">
+			<button>Submit Current Data</button>
+		</form>
+
+		<form>
+			<textarea></textarea>
+		</form>
+		<script src="socket.io/socket.io.js"></script>
+		<script>
+			var socket = io.connect();
+			
+			socket.on('hello', function(data) {
+				console.log(data.hello);
+			});
+
+			var submitbutton = document.getElementsByTagName('button')[0];
+
+			submitbutton.addEventListener('click', function(event) {
+				var inputValue = document.getElementsByTagName('textarea')[0].value;
+
+				socket.emit('current text data', {'text' : inputValue});
+
+				event.preventDefault();
+			});
+	
+			socket.on('current text data', function(data) {
+				var input = document.getElementsByTagName('textarea')[0];
+
+				// let's hope this works
+				input.value = data.text;
+			});
+
+			
+			socket.on('text update', function(data) {
+				var action = data['action'];
+				//console.log(action.toLowerCase());
+				
+				if (action.toLowerCase() == 'delete') {
+					// perform deletion operation
+					var line = data['lineNumber'];
+
+					var input = document.getElementsByTagName('textarea')[0];
+					var text = input.value;
+
+					var removedCharacterText = text.substring(0, line) + text.substring(line + 1);
+
+					input.value = removedCharacterText;
+				} else if (action.toLowerCase() == 'add') {
+					var line = data['lineNumber'];
+
+					var input = document.getElementsByTagName('textarea')[0];
+					var text = input.value;
+					var characterToAdd =  data['text'];
+
+					var addCharacterText = text.substring(0, line) + characterToAdd + text.substring(line);
+
+					input.value = addCharacterText;
+				}
+			});
+			
+
+			//socket.emit('text', {'text', });
+
+			function listenTextInput() {
+				var textinput = document.getElementsByTagName('textarea')[0];
+
+				var previousText = textinput.value;
+		
+				textinput.addEventListener('input', function(event) {
+					var currentText = event.target.value;
+					var caretPosition = getCaretPosition(this);
+					
+					var operation = '';
+					var lineNumber = 0;
+					var character = '';
+
+					// if current text length s smaller than previous text length, assume we are deleting
+					if (previousText.length > currentText.length) {
+						operation = 'DELETE';
+
+						// figure out where the deletion happened
+						lineNumber = caretPosition;
+
+						// retrieve character deleted
+						character = previousText.charAt(lineNumber);
+
+					} else if (previousText.length < currentText.length) {
+						operation = 'ADD';
+
+						// figure out where the inseration happened
+						lineNumber = caretPosition - 1;
+
+						character = currentText.charAt(lineNumber);
+
+						
+					}
+
+					handleTextInput(operation, lineNumber, character);
+
+					//test
+					/*
+					console.log('ACTION: ' + operation + '\n' + 
+								'LINE:' + lineNumber + '\n' +
+								'CHAR:' + character + '\n');
+					*/
+					previousText = currentText;
+				});
+
+				function getCaretPosition(element) {
+					var pos = 0;
+					// testing only for firefox
+					if (element.selectionStart || element.selectionStart == '0')
+						pos = element.selectionStart;
+
+					return pos;
+				}
+			}
+
+			function handleTextInput(operation, lineNumber, character) {
+				// let's see if this works
+				socket.emit('text change', {
+					'action' : operation,
+					'linePosition': lineNumber,
+					'textdata' : character
+				});
+			}
+
+			listenTextInput();
+		</script>
+	</body>
+</html>
